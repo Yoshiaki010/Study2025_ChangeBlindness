@@ -1,0 +1,5 @@
+C:/Users/yanag/Github/Unity/IVRC/IVRC2025_ChangeBlindness/ChangeBlindness/.utmp/RelWithDebInfo/6w6r2l65/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/yanag/Github/Unity/IVRC/IVRC2025_ChangeBlindness/ChangeBlindness/.utmp/RelWithDebInfo/6w6r2l65/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/yanag/Github/Unity/IVRC/IVRC2025_ChangeBlindness/ChangeBlindness/.utmp/RelWithDebInfo/6w6r2l65/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/yanag/Github/Unity/IVRC/IVRC2025_ChangeBlindness/ChangeBlindness/.utmp/RelWithDebInfo/6w6r2l65/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/yanag/Github/Unity/IVRC/IVRC2025_ChangeBlindness/ChangeBlindness/.utmp/RelWithDebInfo/6w6r2l65/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
