@@ -36,15 +36,14 @@ public class ObjectManager : MonoBehaviour
             bool inFocus = obj_changer.inFocus;
             bool inSight = obj_changer.inSight;
             bool saw = obj_changer.saw;
+
             //Debug.Log($"ObjectManager {obj} : !{inFocus} && {inSight} && 0 < {saw}, {limitTime} < {notFocusTime}");
             if (!inFocus && inSight && saw && limitTime < notFocusTime)
             {
                 foreach (ChangeStageDict onePattern in changeStageDict)
                 {
                     if (obj.tag == onePattern.patternName && nowLevel < onePattern.maxLevel)
-                    {
                         obj_changer.MorphingChange(obj);
-                    }
                 }
             }
             else

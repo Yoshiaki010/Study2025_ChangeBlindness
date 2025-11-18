@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameLoop_new : MonoBehaviour
 {
-    public bool fin;
+    public bool objFin;
 
     int gameStatus;
     int changeMode;
@@ -14,7 +14,7 @@ public class GameLoop_new : MonoBehaviour
     {
         gameStatus = 0;
         changeMode = 0;
-        fin = false;
+        objFin = false;
     }
 
     // Update is called once per frame
@@ -30,37 +30,38 @@ public class GameLoop_new : MonoBehaviour
         {
             if (changeMode == 0)
             {
-                //モーフィング　巨大化・矮小化 増加・減少
+                //モーフィング
 
-                if (fin)
+                if (objFin)
                     changeMode = 1;
             }
             else if (changeMode == 1)
             {
-                //切り替わり　巨大化・矮小化 増加・減少
+                //切り替わり
 
-                if (fin)
+
+                if (objFin)
                     changeMode = 2;
             }
             else if (changeMode == 2)
             {
                 //色
 
-                if (fin)
+                if (objFin)
                     changeMode = 3;
             }
             else if (changeMode == 3)
             {
                 //モーフィングx色
 
-                if (fin)
+                if (objFin)
                     changeMode = 4;
             }
             else
             {
                 //切り替わりx色
 
-                if (fin)
+                if (objFin)
                     gameStatus = 2;
             }
         }
