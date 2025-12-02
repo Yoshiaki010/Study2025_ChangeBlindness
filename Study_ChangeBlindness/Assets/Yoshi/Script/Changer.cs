@@ -5,7 +5,7 @@ using UnityEngine;
 public class Changer : MonoBehaviour
 {
     public ObjectManager objectManager;
-    public GameLoop gameLoop;
+//    public GameLoop gameLoop;
     public bool isStuff;
     public bool gameStart;
     public bool inFocus;
@@ -26,8 +26,8 @@ public class Changer : MonoBehaviour
     {
         player = objectManager.player;
         limitTime = objectManager.limitTime;
-        viewingAngle = objectManager.viewingAngle;
-        viewingPos = gameLoop.viewingPos;
+//        viewingAngle = objectManager.viewingAngle;
+//        viewingPos = gameLoop.viewingPos;
         thisPosAngle = GetThisAngle(this.gameObject.transform);
 
         //辞書に登録
@@ -38,6 +38,7 @@ public class Changer : MonoBehaviour
 
     void Update()
     {
+/*            
         if (gameStart)
         {
             playerSightAngle = player.transform.localEulerAngles.y;
@@ -64,6 +65,7 @@ public class Changer : MonoBehaviour
             if (saw && !inFocus)
                 notFocusTime += Time.deltaTime;
         }
+*/
     }
 
     //look
@@ -75,7 +77,7 @@ public class Changer : MonoBehaviour
             inFocus = true;
         }
     }
-
+/*
     void OnTriggerStay(Collider other)
     {
         if (isStuff)
@@ -94,35 +96,35 @@ public class Changer : MonoBehaviour
         if (isStuff)
             gameLoop.startTime = 0f;
     }
-
+*/
     //切り替わり変化
-    public void Change(GameObject target, bool onlyMaterial)
+    public void SwitchChange(GameObject target)
     {
-        nowLevel += 1;
-        if (onlyMaterial)
-        {
-            this.gameObject.GetComponent<Renderer>().material = target.GetComponent<Renderer>().material;
-        }
-        else
-        {
-            GameObject newObj = Instantiate(target, this.transform.position, Quaternion.identity);
-            newObj.tag = this.gameObject.tag;
-            Changer newObj_script = newObj.GetComponent<Changer>();
-            newObj_script.objectManager = objectManager;
-            newObj_script.nowLevel = this.nowLevel;
-        }
+//        nowLevel += 1;
+        GameObject newObj = Instantiate(target, this.transform.position, Quaternion.identity);
+
+        /*
+        newObj.tag = this.gameObject.tag;
+        Changer newObj_script = newObj.GetComponent<Changer>();
+        newObj_script.objectManager = objectManager;
+        newObj_script.nowLevel = this.nowLevel;
+        */
+
+        this.gameObject.SetActive(false);
     }
     
     //モーフィング変化
     public void MorphingChange( GameObject target )
     {
-        blendchange += objectManager.changeSpeed;
+        //blendchange += objectManager.changeSpeed;
+        blendchange += 0.5f;
 
         SkinnedMeshRenderer skinnedMeshRenderer = target.GetComponent<SkinnedMeshRenderer>();
         if (0f < blendchange && blendchange < 101f)
             skinnedMeshRenderer.SetBlendShapeWeight(0, blendchange);
         
-        int maxLevel = objectManager.GetMaxLevel(target.gameObject);
+        /*
+         * int maxLevel = objectManager.GetMaxLevel(target.gameObject);
         float nextLevel_blendchange = (100 / maxLevel) * (nowLevel + 1);//get duration
         if (nextLevel_blendchange < blendchange)
         {
@@ -130,6 +132,7 @@ public class Changer : MonoBehaviour
             nowLevel += 1;
             notFocusTime = 0f;
         }
+        */
     }
 
     float GetRightMaxRange(float angle)

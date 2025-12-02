@@ -17,6 +17,7 @@ classDiagram
     }
     class ChangeController {
         <<オブジェクト変化のタイミング指示役>>
+        +void MakeChange()
         +void AddMe(GameObject obj)
     }
     class Changer{
