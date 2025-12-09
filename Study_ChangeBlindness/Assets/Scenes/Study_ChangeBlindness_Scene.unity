@@ -1655,7 +1655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5932237d4fe1b459e383c52eb03bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeStageDict: []
+  MorphingStageDict: []
+  SwitchStageDict: []
+  ColorStageDict: []
   changeObjList: []
   gameLoop: {fileID: 0}
   player: {fileID: 238262452}
@@ -2833,6 +2835,7 @@ MonoBehaviour:
   finGame: 0
   resetTime: 6
   changeTime: 3
+  color_obj: {fileID: 8297041476681789641, guid: a253b8175c55f6b40bcc3b9ee14bcc7a, type: 3}
   changeObjects:
   - {fileID: 1507387037}
   - {fileID: 965727818}

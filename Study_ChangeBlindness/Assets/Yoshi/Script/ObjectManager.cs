@@ -6,7 +6,10 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    public List<ChangeStageDict> changeStageDict;
+    public List<ChangeStageDict> MorphingStageDict;
+    public List<ChangeStageDict> SwitchStageDict;
+    public List<ChangeStageDict> ColorStageDict;
+
     public List<GameObject> changeObjList;
 
     public GameLoop gameLoop;
@@ -27,6 +30,7 @@ public class ObjectManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        /*
         foreach(GameObject obj in changeObjList)
         {
             Changer obj_changer = obj.GetComponent<Changer>();
@@ -62,8 +66,10 @@ public class ObjectManager : MonoBehaviour
 
             }
         }
+        */
     }
 
+    /*
     public int GetMaxLevel(GameObject target)
     {
         int maxLevel = 0;
@@ -74,6 +80,7 @@ public class ObjectManager : MonoBehaviour
         }
         return maxLevel;
     }
+    */
 
     public void gameStart()
     {
@@ -93,12 +100,10 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    [System.Serializable]//System.Serializable SerializeField
+    [System.Serializable]
     public class ChangeStageDict
     { 
         public string patternName;
-        public int maxLevel;
-        public List<bool> onlyMaterial;
-        public List<GameObject> objectes;
+        public List<GameObject> changeObjectes;
     }
 }

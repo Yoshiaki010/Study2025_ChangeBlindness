@@ -8,6 +8,7 @@ public class GameLoop_new : MonoBehaviour
     public float resetTime;
     public float changeTime;
 
+    public GameObject color_obj;
     public List<GameObject> changeObjects;
 
     bool buttonStatus;
@@ -19,7 +20,7 @@ public class GameLoop_new : MonoBehaviour
     {
         finGame = false;
         buttonStatus = false;
-        gameStatus = 0;
+        gameStatus = 3;
         gameTime = 0f;
     }
 
@@ -44,6 +45,7 @@ public class GameLoop_new : MonoBehaviour
             //モーフィング
             if (changeTime < gameTime)
             {
+                //Objectmanager.MakeChange();
                 for (int i = 0; i < changeObjects.Count; i++)
                 {
                     Changer obj_script = changeObjects[i].GetComponent<Changer>();
@@ -70,6 +72,7 @@ public class GameLoop_new : MonoBehaviour
             if (changeTime < gameTime)
             {
                 //切り替わり
+                //Objectmanager.MakeChange();
                 for (int i = 0; i < changeObjects.Count; i++)
                 {
                     Changer obj_script = changeObjects[i].GetComponent<Changer>();
@@ -92,8 +95,21 @@ public class GameLoop_new : MonoBehaviour
         }
         else if (gameStatus == 3)
         {
-            Debug.Log($"GameLoop : gameStatus waiting = 0 = {gameStatus}");
+            Debug.Log($"GameLoop : gameStatus 色 = 3 = {gameStatus}");
             //色
+            if (changeTime < gameTime)
+            {
+                //Objectmanager.MakeChange();
+                for (int i = 0; i < changeObjects.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        Debug.Log($"GameLoop : gameStatus 色変化 = 3 = {gameStatus}");
+                        Changer obj_script = changeObjects[i].GetComponent<Changer>();
+                        obj_script.ColorChange(color_obj);
+                    }
+                }
+            }
 
             if (finGame || buttonStatus || resetTime < gameTime)
             {

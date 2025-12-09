@@ -135,6 +135,12 @@ public class Changer : MonoBehaviour
         */
     }
 
+    //F•Ï‰»
+    public void ColorChange( GameObject target)
+    {
+        this.gameObject.GetComponent<Renderer>().material = target.GetComponent<Renderer>().material;
+    }
+
     float GetRightMaxRange(float angle)
     {
         float baseAngle = 0f;
