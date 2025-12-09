@@ -24,7 +24,7 @@ public class ObjectManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        viewingTime = gameLoop.viewingTime;
+//        viewingTime = gameLoop.viewingTime;
     }
 
     // Update is called once per frame
