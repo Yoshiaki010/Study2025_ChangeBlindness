@@ -214,14 +214,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394b85da322eb0544aeddc5560c7165e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectManager: {fileID: 0}
-  isStuff: 0
+  changeController: {fileID: 0}
+  gameLoop: {fileID: 0}
   gameStart: 0
   inFocus: 0
-  inSight: 0
   saw: 0
-  notFocusTime: 0
-  nowLevel: 0
 --- !u!137 &16514054
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1394,7 +1391,7 @@ GameObject:
   - component: {fileID: 965727819}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Color
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1655,15 +1652,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5932237d4fe1b459e383c52eb03bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MorphingStageDict: []
-  SwitchStageDict: []
-  ColorStageDict: []
-  changeObjList: []
-  gameLoop: {fileID: 0}
-  player: {fileID: 238262452}
-  viewingAngle: 0
-  limitTime: 0
-  changeSpeed: 0
+  changeDB:
+  - patternName: Morph
+    changeStage:
+    - {fileID: 965727818}
+  - patternName: Switch
+    changeStage:
+    - {fileID: 965727818}
+  - patternName: Color
+    changeStage:
+    - {fileID: 8297041476681789641, guid: a253b8175c55f6b40bcc3b9ee14bcc7a, type: 3}
+  changeObjects: []
+  gameLoop: {fileID: 1473273861}
+  changeSpeed: 0.5
+  changeTime: 0
 --- !u!4 &1105628690
 Transform:
   m_ObjectHideFlags: 0
@@ -1881,7 +1883,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235504108}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1235504111
 Camera:
   m_ObjectHideFlags: 0
@@ -2043,14 +2045,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394b85da322eb0544aeddc5560c7165e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectManager: {fileID: 0}
-  isStuff: 0
+  changeController: {fileID: 0}
+  gameLoop: {fileID: 0}
   gameStart: 0
   inFocus: 0
-  inSight: 0
   saw: 0
-  notFocusTime: 0
-  nowLevel: 0
 --- !u!137 &1260521827
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -2119,7 +2118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263502720}
   m_Layer: 0
-  m_Name: Studio
+  m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2553,7 +2552,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350593442}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &1388703404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,15 +2843,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1473273858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20468a9491112864294a7c50fa1eca43, type: 3}
+  m_Script: {fileID: 11500000, guid: b31dbbd6eb234954c981ee87813a8010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finGame: 0
+  changeController: {fileID: 1105628689}
+  buttonStatus: 0
   resetTime: 6
   changeTime: 3
-  color_obj: {fileID: 0}
-  changeObjects:
-  - {fileID: 1507387037}
+  gameStatus: 0
 --- !u!1 &1507387037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,7 +2866,7 @@ GameObject:
   - component: {fileID: 1507387039}
   m_Layer: 0
   m_Name: house4_morph
-  m_TagString: house4
+  m_TagString: Morph
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2948,14 +2946,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394b85da322eb0544aeddc5560c7165e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectManager: {fileID: 1105628689}
-  isStuff: 0
+  changeController: {fileID: 1105628689}
+  gameLoop: {fileID: 1473273861}
   gameStart: 1
   inFocus: 0
-  inSight: 0
   saw: 0
-  notFocusTime: 0
-  nowLevel: 0
 --- !u!137 &1507387042
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        /*
         // 現在のキーボード情報
         var current = Keyboard.current;
 
@@ -38,5 +38,6 @@ public class PlayerController : MonoBehaviour
 //            Debug.Log("pressed d");
             Player.transform.Rotate(0f, 0.5f, 0f);
         }
+        */
     }
 }

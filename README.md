@@ -30,11 +30,17 @@ classDiagram
         +void SwitchChange()
         +void ColorChange()
     }
+    class Studio{
+        <<各ゲームの開始位置保存>>
+        + GameObject obj
+        + Image img
+    }
     class ChangeDB{
         <<オブジェクト変化順序のデータベース>>
-        + string patternName
-        + int maxLevel
-        + List<bool> changeMaterial
-        + List<GameObject> objectes  
+        +void Request( GameObjet obj )
+        - string patternName
+        - int maxLevel
+        - List<bool> changeMaterial
+        - List<GameObject> objectes  
     }
 ```mermaid

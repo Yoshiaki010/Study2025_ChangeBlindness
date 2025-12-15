@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GameLoop : MonoBehaviour
 {
-    public bool finGame;
+    public ChangeController changeController;
+
+    public bool buttonStatus;
     public float resetTime;
     public float changeTime;
+    public int gameStatus;
 
-    public GameObject color_obj;
-    public List<GameObject> changeObjects;
-
-    bool buttonStatus;
-    int gameStatus;
+    public bool finGame;
     float gameTime;
 
     // Start is called before the first frame update
@@ -43,15 +42,11 @@ public class GameLoop : MonoBehaviour
         {
             Debug.Log($"GameLoop : gameStatus モーフィング = 1 = {gameStatus},{gameTime}");
             //モーフィング
-            if (changeTime < gameTime)
+            if (changeTime < gameTime && !finGame)
             {
-                //Objectmanager.MakeChange();
-                for (int i = 0; i < changeObjects.Count; i++)
-                {
-                    Changer obj_script = changeObjects[i].GetComponent<Changer>();
-                    if (i == 0)
-                        obj_script.MorphingChange(changeObjects[i]);
-                }
+                changeController.MakeChange();
+                Debug.Log($"GameLoop : now Change!");
+                finGame = true;
             }
 
             if (buttonStatus || resetTime < gameTime)
@@ -59,31 +54,16 @@ public class GameLoop : MonoBehaviour
                 gameStatus = 2;
                 Debug.Log($"GameLoop : gameStatus モーフィング終了 = {gameStatus},{gameTime},{finGame} || {buttonStatus} || {resetTime < gameTime}");
                 gameTime = 0f;
-                foreach (GameObject obj in changeObjects)
-                {
-                    Changer obj_script = obj.GetComponent<Changer>();
-                    obj_script.Reset();
-                }
+
             }
         }
         else if (gameStatus == 2)
         {
             Debug.Log($"GameLoop : gameStatus 切り替わり = 2 = {gameStatus},{gameTime}");
-            if (changeTime < gameTime)
+            if (changeTime < gameTime || !finGame)
             {
                 //切り替わり
-                //Objectmanager.MakeChange();
-                for (int i = 0; i < changeObjects.Count; i++)
-                {
-                    Changer obj_script = changeObjects[i].GetComponent<Changer>();
-                    Debug.Log($"GameLoop : gameStatus 切り替わりたい = {gameStatus},{gameTime},{finGame},{!finGame}");
-                    if (i == 0 && !finGame)
-                    {
-                        obj_script.SwitchChange(changeObjects[1]);
-                        finGame = true;
-                        Debug.Log($"GameLoop : gameStatus 今切り替わり = {gameStatus},{gameTime},{finGame}");
-                    }
-                }
+                changeController.MakeChange();
             }
 
             if (buttonStatus || resetTime < gameTime)
@@ -91,30 +71,23 @@ public class GameLoop : MonoBehaviour
                 gameStatus = 3;
                 Debug.Log($"GameLoop : gameStatus 切り替わり終了 = {gameStatus},{gameTime}");
                 gameTime = 0f;
+
             }
         }
         else if (gameStatus == 3)
         {
             Debug.Log($"GameLoop : gameStatus 色 = 3 = {gameStatus}");
             //色
-            if (changeTime < gameTime)
+            if (changeTime < gameTime || !finGame)
             {
-                //Objectmanager.MakeChange();
-                for (int i = 0; i < changeObjects.Count; i++)
-                {
-                    if (i == 1)
-                    {
-                        Debug.Log($"GameLoop : gameStatus 色変化 = 3 = {gameStatus}");
-                        Changer obj_script = changeObjects[i].GetComponent<Changer>();
-                        obj_script.ColorChange(color_obj);
-                    }
-                }
+                changeController.MakeChange();
             }
 
             if (buttonStatus || resetTime < gameTime)
             {
                 gameStatus = 4;
                 gameTime = 0f;
+                changeController.Reset();
             }
         }
         else if (gameStatus == 4)
@@ -131,7 +104,7 @@ public class GameLoop : MonoBehaviour
         {
             //切り替わりx色
 
-            if (finGame || buttonStatus || resetTime < gameTime)
+            if ( buttonStatus || resetTime < gameTime)
             {
                 gameStatus = 0;
                 gameTime = 0f;
@@ -143,6 +116,12 @@ public class GameLoop : MonoBehaviour
             Debug.Log($"GameLoop : gameStatus = Unknow = {gameStatus}");
         }
     }
+
+    private void Reset()
+    {
+
+    }
+
     /*
     public ObjectManager objectManager;
     public Animator anim;

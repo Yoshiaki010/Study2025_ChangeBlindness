@@ -5,13 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Anchor
-  - house1
-  - house2
-  - house3
-  - house4
-  - house5
-  - house6
-  - house7
+  - Morph
+  - Color
+  - Switch
   layers:
   - Default
   - TransparentFX

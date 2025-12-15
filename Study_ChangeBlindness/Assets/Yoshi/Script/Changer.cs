@@ -1,71 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Changer : MonoBehaviour
 {
-    public ObjectManager objectManager;
-//    public GameLoop gameLoop;
-    public bool isStuff;
+    public ChangeController changeController;
+    public GameLoop gameLoop;
+
     public bool gameStart;
     public bool inFocus;
-    public bool inSight;
     public bool saw;
-    public float notFocusTime;
+
+    bool morphingChange;
+    float blendchange;
+    /*
+    public bool isStuff;
+    public bool inSight;
     public int nowLevel;
+    public float notFocusTime;
 
     GameObject player;
     GameObject viewingPos;
+
     float playerSightAngle;
     float thisPosAngle;
     float limitTime;
     float viewingAngle;
-    float blendchange;
+    */
 
     void Start()
     {
+        /*
         player = objectManager.player;
         limitTime = objectManager.limitTime;
-//        viewingAngle = objectManager.viewingAngle;
-//        viewingPos = gameLoop.viewingPos;
+        viewingAngle = objectManager.viewingAngle;
+        viewingPos = gameLoop.viewingPos;
         thisPosAngle = GetThisAngle(this.gameObject.transform);
+        */
 
         //辞書に登録
-        objectManager.changeObjList.Add(this.gameObject);
+        changeController.changeObjects.Add(this.gameObject);
 
         Reset();
+
+        blendchange = 0f;
+        gameStart = true;
+
+        inFocus = false;
+        saw = true;
     }
 
     void Update()
     {
-/*            
-        if (gameStart)
+        if (morphingChange)
         {
-            playerSightAngle = player.transform.localEulerAngles.y;
+            //モーフィング変化
+            //blendchange += objectManager.changeSpeed;
+            blendchange += 0.5f;
 
-            float leftMaxRange = GetLeftMaxRange(playerSightAngle);
-            float rightMaxRange = GetRightMaxRange(playerSightAngle);
+            SkinnedMeshRenderer skinnedMeshRenderer = this.GetComponent<SkinnedMeshRenderer>();
+            if (0f < blendchange && blendchange < 101f)
+                skinnedMeshRenderer.SetBlendShapeWeight(0, blendchange);
 
-            if (objectManager.viewingAngle < playerSightAngle && playerSightAngle < 360 - objectManager.viewingAngle)
+            Debug.Log($"Changer MorphingChange : blendchange = {blendchange}");
+
+            /*
+            int maxLevel = objectManager.GetMaxLevel(target.gameObject);
+            float nextLevel_blendchange = (100 / maxLevel) * (nowLevel + 1);//get duration
+            if (nextLevel_blendchange < blendchange)
             {
-                if (leftMaxRange < thisPosAngle && thisPosAngle < rightMaxRange)
-                    inSight = true;
-                else
-                    inSight = false;
+                saw = false;
+                nowLevel += 1;
+                notFocusTime = 0f;
             }
-            else
-            {
-                if (leftMaxRange < thisPosAngle && thisPosAngle < 360f || -1f < thisPosAngle && thisPosAngle < rightMaxRange)
-                    inSight = true;
-                else
-                    inSight = false;
-            }
+            */
 
-            //start counting the not focus second
-            if (saw && !inFocus)
-                notFocusTime += Time.deltaTime;
+            if (blendchange >= 100f)
+            {
+                morphingChange = false;
+                blendchange = 0f;
+            }
+            changeController.changeTime = false;
         }
-*/
+
+
+        /*            
+                if (gameStart)
+                {
+                    playerSightAngle = player.transform.localEulerAngles.y;
+
+                    float leftMaxRange = GetLeftMaxRange(playerSightAngle);
+                    float rightMaxRange = GetRightMaxRange(playerSightAngle);
+
+                    if (objectManager.viewingAngle < playerSightAngle && playerSightAngle < 360 - objectManager.viewingAngle)
+                    {
+                        if (leftMaxRange < thisPosAngle && thisPosAngle < rightMaxRange)
+                            inSight = true;
+                        else
+                            inSight = false;
+                    }
+                    else
+                    {
+                        if (leftMaxRange < thisPosAngle && thisPosAngle < 360f || -1f < thisPosAngle && thisPosAngle < rightMaxRange)
+                            inSight = true;
+                        else
+                            inSight = false;
+                    }
+
+                    //start counting the not focus second
+                    if (saw && !inFocus)
+                        notFocusTime += Time.deltaTime;
+                }
+        */
     }
 
     //look
@@ -74,10 +121,46 @@ public class Changer : MonoBehaviour
         if (gameStart)
         {
             saw = true;
-            inFocus = true;
+            inFocus = false;
         }
     }
-/*
+
+    public void SwitchChange( GameObject target )
+    {
+        //切り替わり変化
+        GameObject newObj = Instantiate(target, this.transform.position, Quaternion.identity);
+
+        newObj.tag = this.gameObject.tag;
+        Changer newObj_script = newObj.GetComponent<Changer>();
+        newObj_script.changeController = changeController;
+
+        changeController.changeTime = false;
+        this.gameObject.SetActive(false);
+    }
+
+    public void MorphingChange( GameObject target )
+    {
+        morphingChange = true;
+    }
+
+    public void ColorChange( GameObject target )
+    {
+        //色変化
+        this.gameObject.GetComponent<Renderer>().material = target.GetComponent<Renderer>().material;
+        changeController.changeTime = false;
+    }
+
+    public void Reset()
+    {
+        blendchange = 0f;
+        gameStart = false;
+        inFocus = false;
+        saw = false;
+
+        SkinnedMeshRenderer skinnedMeshRenderer = this.gameObject.GetComponent<SkinnedMeshRenderer>();
+        skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
+    }
+    /*
     void OnTriggerStay(Collider other)
     {
         if (isStuff)
@@ -96,52 +179,8 @@ public class Changer : MonoBehaviour
         if (isStuff)
             gameLoop.startTime = 0f;
     }
-*/
-    //切り替わり変化
-    public void SwitchChange(GameObject target)
-    {
-//        nowLevel += 1;
-        GameObject newObj = Instantiate(target, this.transform.position, Quaternion.identity);
 
-        /*
-        newObj.tag = this.gameObject.tag;
-        Changer newObj_script = newObj.GetComponent<Changer>();
-        newObj_script.objectManager = objectManager;
-        newObj_script.nowLevel = this.nowLevel;
-        */
-
-        this.gameObject.SetActive(false);
-    }
-    
-    //モーフィング変化
-    public void MorphingChange( GameObject target )
-    {
-        //blendchange += objectManager.changeSpeed;
-        blendchange += 0.5f;
-
-        SkinnedMeshRenderer skinnedMeshRenderer = target.GetComponent<SkinnedMeshRenderer>();
-        if (0f < blendchange && blendchange < 101f)
-            skinnedMeshRenderer.SetBlendShapeWeight(0, blendchange);
-        
-        /*
-         * int maxLevel = objectManager.GetMaxLevel(target.gameObject);
-        float nextLevel_blendchange = (100 / maxLevel) * (nowLevel + 1);//get duration
-        if (nextLevel_blendchange < blendchange)
-        {
-            saw = false;
-            nowLevel += 1;
-            notFocusTime = 0f;
-        }
-        */
-    }
-
-    //色変化
-    public void ColorChange( GameObject target)
-    {
-        this.gameObject.GetComponent<Renderer>().material = target.GetComponent<Renderer>().material;
-    }
-
-    float GetRightMaxRange(float angle)
+     float GetRightMaxRange(float angle)
     {
         float baseAngle = 0f;
 
@@ -184,20 +223,5 @@ public class Changer : MonoBehaviour
 
         return angle;
     }
-
-    public void Reset()
-    {
-        if (!isStuff)
-        {
-            nowLevel = 0;
-            blendchange = 0f;
-            gameStart = false;
-            inFocus = false;
-            inSight = false;
-            saw = false;
-
-            SkinnedMeshRenderer skinnedMeshRenderer = this.gameObject.GetComponent<SkinnedMeshRenderer>();
-            skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
-        }
-    }
+    */
 }
