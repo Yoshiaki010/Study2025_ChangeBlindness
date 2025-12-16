@@ -12,35 +12,13 @@ public class Changer : MonoBehaviour
     public bool inFocus;
     public bool saw;
 
-    bool morphingChange;
     float blendchange;
-    /*
-    public bool isStuff;
-    public bool inSight;
-    public int nowLevel;
-    public float notFocusTime;
-
-    GameObject player;
-    GameObject viewingPos;
-
-    float playerSightAngle;
-    float thisPosAngle;
-    float limitTime;
-    float viewingAngle;
-    */
 
     void Start()
     {
-        /*
-        player = objectManager.player;
-        limitTime = objectManager.limitTime;
-        viewingAngle = objectManager.viewingAngle;
-        viewingPos = gameLoop.viewingPos;
-        thisPosAngle = GetThisAngle(this.gameObject.transform);
-        */
-
         //辞書に登録
         changeController.changeObjects.Add(this.gameObject);
+        Debug.Log("Changer : Add me to change objects List");
 
         Reset();
 
@@ -53,66 +31,7 @@ public class Changer : MonoBehaviour
 
     void Update()
     {
-        if (morphingChange)
-        {
-            //モーフィング変化
-            //blendchange += objectManager.changeSpeed;
-            blendchange += 0.5f;
 
-            SkinnedMeshRenderer skinnedMeshRenderer = this.GetComponent<SkinnedMeshRenderer>();
-            if (0f < blendchange && blendchange < 101f)
-                skinnedMeshRenderer.SetBlendShapeWeight(0, blendchange);
-
-            Debug.Log($"Changer MorphingChange : blendchange = {blendchange}");
-
-            /*
-            int maxLevel = objectManager.GetMaxLevel(target.gameObject);
-            float nextLevel_blendchange = (100 / maxLevel) * (nowLevel + 1);//get duration
-            if (nextLevel_blendchange < blendchange)
-            {
-                saw = false;
-                nowLevel += 1;
-                notFocusTime = 0f;
-            }
-            */
-
-            if (blendchange >= 100f)
-            {
-                morphingChange = false;
-                blendchange = 0f;
-            }
-            changeController.changeTime = false;
-        }
-
-
-        /*            
-                if (gameStart)
-                {
-                    playerSightAngle = player.transform.localEulerAngles.y;
-
-                    float leftMaxRange = GetLeftMaxRange(playerSightAngle);
-                    float rightMaxRange = GetRightMaxRange(playerSightAngle);
-
-                    if (objectManager.viewingAngle < playerSightAngle && playerSightAngle < 360 - objectManager.viewingAngle)
-                    {
-                        if (leftMaxRange < thisPosAngle && thisPosAngle < rightMaxRange)
-                            inSight = true;
-                        else
-                            inSight = false;
-                    }
-                    else
-                    {
-                        if (leftMaxRange < thisPosAngle && thisPosAngle < 360f || -1f < thisPosAngle && thisPosAngle < rightMaxRange)
-                            inSight = true;
-                        else
-                            inSight = false;
-                    }
-
-                    //start counting the not focus second
-                    if (saw && !inFocus)
-                        notFocusTime += Time.deltaTime;
-                }
-        */
     }
 
     //look
@@ -122,6 +41,24 @@ public class Changer : MonoBehaviour
         {
             saw = true;
             inFocus = false;
+        }
+    }
+
+    public void MorphingChange()
+    {
+        Debug.Log($"Changer : MorphingChange blendchange = {blendchange}");
+        //モーフィング変化
+        //blendchange += .changeSpeed;
+        blendchange += 0.5f;
+
+        SkinnedMeshRenderer skinnedMeshRenderer = this.GetComponent<SkinnedMeshRenderer>();
+        if (0f < blendchange && blendchange < 101f)
+            skinnedMeshRenderer.SetBlendShapeWeight(0, blendchange);
+
+        if (blendchange >= 100f)
+        {
+            blendchange = 0f;
+            changeController.changeTime = false;
         }
     }
 
@@ -138,15 +75,10 @@ public class Changer : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void MorphingChange( GameObject target )
-    {
-        morphingChange = true;
-    }
-
-    public void ColorChange( GameObject target )
+    public void ColorChange( Material target )
     {
         //色変化
-        this.gameObject.GetComponent<Renderer>().material = target.GetComponent<Renderer>().material;
+        this.gameObject.GetComponent<Renderer>().material = target;
         changeController.changeTime = false;
     }
 

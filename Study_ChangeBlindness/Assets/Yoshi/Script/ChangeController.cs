@@ -7,18 +7,11 @@ using static ChangeController;
 
 public class ChangeController : MonoBehaviour
 {
-    /*
-    public List<ChangeStageDict> MorphingStageDict;
-    public List<ChangeStageDict> SwitchStageDict;
-    public List<ChangeStageDict> ColorStageDict;
-    */
-
     public List<ChangeStageDict> changeDB;
-
     public List<GameObject> changeObjects;
+
     public GameLoop gameLoop;
     public float changeSpeed;
-
     public bool changeTime;
 
     /*
@@ -29,6 +22,9 @@ public class ChangeController : MonoBehaviour
     float viewingTime;
     */
 
+    public bool morphingChange;
+    public bool switchChange;
+    public bool colorChange;
 
     // Start is called before the first frame update
     public void Start()
@@ -56,13 +52,16 @@ public class ChangeController : MonoBehaviour
                     {
                         if (obj.tag == onePattern.patternName)
                         {
-                            GameObject toObj = onePattern.changeStage[0];
-                            if (gameLoop.gameStatus == 1)
-                                obj_changer.MorphingChange(obj);
-                            else if (gameLoop.gameStatus == 2)
-                                obj_changer.SwitchChange(toObj);
-                            else
-                                obj_changer.ColorChange(toObj);
+                            if (morphingChange)
+                                obj_changer.MorphingChange();
+                            if (switchChange)
+                            {
+                                obj_changer.SwitchChange(onePattern.switchStage[0]);
+                            }
+                            if (colorChange)
+                            {
+                                obj_changer.ColorChange(onePattern.colorStage[0]);
+                            }
                         }
                     }
                 }
@@ -70,16 +69,6 @@ public class ChangeController : MonoBehaviour
         }
     }
 
-    public void MakeChange()
-    { 
-        changeTime = true;
-    }
-
-    public void FinChange()
-    {
-        changeTime = false;
-        gameLoop.finGame = true;
-    }
     public void gameStart()
     {
         foreach( GameObject obj in changeObjects)
@@ -96,6 +85,7 @@ public class ChangeController : MonoBehaviour
     public class ChangeStageDict
     { 
         public string patternName;
-        public List<GameObject> changeStage;
+        public List<GameObject> switchStage;
+        public List<Material> colorStage;
     }
 }

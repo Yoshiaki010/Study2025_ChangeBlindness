@@ -44,8 +44,9 @@ public class GameLoop : MonoBehaviour
             //モーフィング
             if (changeTime < gameTime && !finGame)
             {
-                changeController.MakeChange();
-                Debug.Log($"GameLoop : now Change!");
+                Debug.Log($"GameLoop : send changeTime");
+                changeController.morphingChange = true;
+                changeController.changeTime = true;
                 finGame = true;
             }
 
@@ -60,10 +61,12 @@ public class GameLoop : MonoBehaviour
         else if (gameStatus == 2)
         {
             Debug.Log($"GameLoop : gameStatus 切り替わり = 2 = {gameStatus},{gameTime}");
-            if (changeTime < gameTime || !finGame)
+            if (changeTime < gameTime && !finGame)
             {
                 //切り替わり
-                changeController.MakeChange();
+                changeController.switchChange = true;
+                changeController.changeTime = true;
+                finGame = true;
             }
 
             if (buttonStatus || resetTime < gameTime)
@@ -78,9 +81,11 @@ public class GameLoop : MonoBehaviour
         {
             Debug.Log($"GameLoop : gameStatus 色 = 3 = {gameStatus}");
             //色
-            if (changeTime < gameTime || !finGame)
+            if (changeTime < gameTime && !finGame)
             {
-                changeController.MakeChange();
+                changeController.colorChange = true;
+                changeController.changeTime = true;
+                finGame = true;
             }
 
             if (buttonStatus || resetTime < gameTime)

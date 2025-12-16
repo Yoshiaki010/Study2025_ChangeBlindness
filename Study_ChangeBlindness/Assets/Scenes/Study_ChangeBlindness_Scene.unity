@@ -1663,9 +1663,12 @@ MonoBehaviour:
     changeStage:
     - {fileID: 8297041476681789641, guid: a253b8175c55f6b40bcc3b9ee14bcc7a, type: 3}
   changeObjects: []
-  gameLoop: {fileID: 1473273861}
+  gameLoop: {fileID: 0}
   changeSpeed: 0.5
   changeTime: 0
+  morphingChange: 0
+  switchChange: 0
+  colorChange: 0
 --- !u!4 &1105628690
 Transform:
   m_ObjectHideFlags: 0
@@ -2843,7 +2846,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1473273858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31dbbd6eb234954c981ee87813a8010, type: 3}
+  m_Script: {fileID: 11500000, guid: 20468a9491112864294a7c50fa1eca43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   changeController: {fileID: 1105628689}
@@ -2851,6 +2854,7 @@ MonoBehaviour:
   resetTime: 6
   changeTime: 3
   gameStatus: 0
+  finGame: 0
 --- !u!1 &1507387037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,7 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeController: {fileID: 1105628689}
-  gameLoop: {fileID: 1473273861}
+  gameLoop: {fileID: 0}
   gameStart: 1
   inFocus: 0
   saw: 0
