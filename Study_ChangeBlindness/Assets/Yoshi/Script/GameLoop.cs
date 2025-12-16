@@ -10,10 +10,10 @@ public class GameLoop : MonoBehaviour
     public bool buttonStatus;
     public bool finGame;
     public float resetTime;
+    public float changeTime;
     public int gameStatus;
 
     float gameTime;
-    float changeTime;
 
 
     // Start is called before the first frame update
@@ -129,8 +129,10 @@ public class GameLoop : MonoBehaviour
     {
         changeController.Reset();
         changeController.changeObjects.Clear();
-        GameObject newObj = Instantiate(StartObjects[gameStatus - 1], StartObjects[gameStatus - 1].transform.position, StartObjects[gameStatus - 1].transform.rotation);
-        newObj.gameObject.SetActive(true);
+        GameObject obj = Instantiate(StartObjects[gameStatus - 1], StartObjects[gameStatus - 1].transform.position, StartObjects[gameStatus - 1].transform.rotation);
+        Changer obj_changer = obj.GetComponent<Changer>();
+        obj_changer.gameLoop = this;
+        obj_changer.changeController = changeController;
     }
 
     /*
