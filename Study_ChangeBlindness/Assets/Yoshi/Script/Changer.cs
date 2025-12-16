@@ -58,7 +58,7 @@ public class Changer : MonoBehaviour
         if (blendchange >= 100f)
         {
             blendchange = 0f;
-            changeController.changeTime = false;
+            changeController.changeTiming = false;
         }
     }
 
@@ -71,7 +71,7 @@ public class Changer : MonoBehaviour
         Changer newObj_script = newObj.GetComponent<Changer>();
         newObj_script.changeController = changeController;
 
-        changeController.changeTime = false;
+        changeController.changeTiming = false;
         this.gameObject.SetActive(false);
     }
 
@@ -79,7 +79,7 @@ public class Changer : MonoBehaviour
     {
         //êFïœâª
         this.gameObject.GetComponent<Renderer>().material = target;
-        changeController.changeTime = false;
+        changeController.changeTiming = false;
     }
 
     public void Reset()

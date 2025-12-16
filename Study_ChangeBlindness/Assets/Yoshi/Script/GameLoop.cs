@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class GameLoop : MonoBehaviour
 {
+    public List<Material> Images;
+    public List<GameObject> StartObjects;
     public ChangeController changeController;
-
     public bool buttonStatus;
+    public bool finGame;
     public float resetTime;
-    public float changeTime;
     public int gameStatus;
 
-    public bool finGame;
     float gameTime;
+    float changeTime;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class GameLoop : MonoBehaviour
             {
                 gameStatus = 1;
                 gameTime = 0f;
+                Reset();
             }
         }
         else if (gameStatus == 1)
@@ -46,7 +49,7 @@ public class GameLoop : MonoBehaviour
             {
                 Debug.Log($"GameLoop : send changeTime");
                 changeController.morphingChange = true;
-                changeController.changeTime = true;
+                changeController.changeTiming = true;
                 finGame = true;
             }
 
@@ -55,7 +58,7 @@ public class GameLoop : MonoBehaviour
                 gameStatus = 2;
                 Debug.Log($"GameLoop : gameStatus モーフィング終了 = {gameStatus},{gameTime},{finGame} || {buttonStatus} || {resetTime < gameTime}");
                 gameTime = 0f;
-
+                Reset();
             }
         }
         else if (gameStatus == 2)
@@ -65,7 +68,7 @@ public class GameLoop : MonoBehaviour
             {
                 //切り替わり
                 changeController.switchChange = true;
-                changeController.changeTime = true;
+                changeController.changeTiming = true;
                 finGame = true;
             }
 
@@ -74,7 +77,7 @@ public class GameLoop : MonoBehaviour
                 gameStatus = 3;
                 Debug.Log($"GameLoop : gameStatus 切り替わり終了 = {gameStatus},{gameTime}");
                 gameTime = 0f;
-
+                Reset();
             }
         }
         else if (gameStatus == 3)
@@ -84,15 +87,15 @@ public class GameLoop : MonoBehaviour
             if (changeTime < gameTime && !finGame)
             {
                 changeController.colorChange = true;
-                changeController.changeTime = true;
+                changeController.changeTiming = true;
                 finGame = true;
             }
 
             if (buttonStatus || resetTime < gameTime)
             {
-                gameStatus = 4;
+                gameStatus = 0;
                 gameTime = 0f;
-                changeController.Reset();
+                Reset();
             }
         }
         else if (gameStatus == 4)
@@ -124,7 +127,10 @@ public class GameLoop : MonoBehaviour
 
     private void Reset()
     {
-
+        changeController.Reset();
+        changeController.changeObjects.Clear();
+        GameObject newObj = Instantiate(StartObjects[gameStatus - 1], StartObjects[gameStatus - 1].transform.position, StartObjects[gameStatus - 1].transform.rotation);
+        newObj.gameObject.SetActive(true);
     }
 
     /*

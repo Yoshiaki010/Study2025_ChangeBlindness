@@ -12,16 +12,7 @@ public class ChangeController : MonoBehaviour
 
     public GameLoop gameLoop;
     public float changeSpeed;
-    public bool changeTime;
-
-    /*
-    public GameObject player;
-    public float viewingAngle;
-    public float limitTime;
-
-    float viewingTime;
-    */
-
+    public bool changeTiming;
     public bool morphingChange;
     public bool switchChange;
     public bool colorChange;
@@ -30,13 +21,13 @@ public class ChangeController : MonoBehaviour
     public void Start()
     {
 //        viewingTime = gameLoop.viewingTime;
-        changeTime = false;
+        changeTiming = false;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if(changeTime)
+        if(changeTiming)
         {
             foreach (GameObject obj in changeObjects)
             {
@@ -78,7 +69,7 @@ public class ChangeController : MonoBehaviour
     public void Reset()
     {
         foreach( GameObject obj in changeObjects )
-            obj.GetComponent<Changer>().Reset();
+            Destroy(obj);
     }
 
     [System.Serializable]

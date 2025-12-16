@@ -1654,18 +1654,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeDB:
   - patternName: Morph
-    changeStage:
-    - {fileID: 965727818}
+    switchStage: []
+    colorStage: []
   - patternName: Switch
-    changeStage:
-    - {fileID: 965727818}
+    switchStage:
+    - {fileID: 4896951612846388775, guid: 940922ecfabf153448d7199d4de23bd7, type: 3}
+    colorStage: []
   - patternName: Color
-    changeStage:
-    - {fileID: 8297041476681789641, guid: a253b8175c55f6b40bcc3b9ee14bcc7a, type: 3}
+    switchStage: []
+    colorStage:
+    - {fileID: 2100000, guid: cec44fa3059a8784eb7d70881d7a1798, type: 2}
   changeObjects: []
-  gameLoop: {fileID: 0}
+  gameLoop: {fileID: 1473273861}
   changeSpeed: 0.5
-  changeTime: 0
+  changeTiming: 0
   morphingChange: 0
   switchChange: 0
   colorChange: 0
@@ -2849,170 +2851,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20468a9491112864294a7c50fa1eca43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Images:
+  - {fileID: 2100000, guid: 8bde242f89a795a48aa2b51f1d1d9a5e, type: 2}
+  StartObjects:
+  - {fileID: 969932457817195028, guid: 61b600a91d215714a8561213b417ce90, type: 3}
+  - {fileID: 6667512087559638392, guid: e8e0ee2eb19f2ee4f84eba92b28d2ef2, type: 3}
+  - {fileID: 5947222243751484150, guid: e23238228e7e8bc44b7b3d9e1bb03820, type: 3}
   changeController: {fileID: 1105628689}
   buttonStatus: 0
-  resetTime: 6
-  changeTime: 3
-  gameStatus: 0
   finGame: 0
---- !u!1 &1507387037
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1507387038}
-  - component: {fileID: 1507387042}
-  - component: {fileID: 1507387041}
-  - component: {fileID: 1507387040}
-  - component: {fileID: 1507387039}
-  m_Layer: 0
-  m_Name: house4_morph
-  m_TagString: Morph
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1507387038
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507387037}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.64085644, y: -0.29883623, z: -0.29883623, w: 0.64085644}
-  m_LocalPosition: {x: 120.8, y: 13.2, z: 202.9}
-  m_LocalScale: {x: 0.9000001, y: 0.90000033, z: 0.9000002}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -50}
---- !u!54 &1507387039
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507387037}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &1507387040
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507387037}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.3678026, y: 4.4118805, z: 11.060825}
-  m_Center: {x: -0.1486222, y: 0.037026092, z: 5.524751}
---- !u!114 &1507387041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507387037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394b85da322eb0544aeddc5560c7165e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeController: {fileID: 1105628689}
-  gameLoop: {fileID: 0}
-  gameStart: 1
-  inFocus: 0
-  saw: 0
---- !u!137 &1507387042
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507387037}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ea0d666f275ae464fa2f71ca1eba8406, type: 2}
-  - {fileID: 2100000, guid: 520769a8aa3c9db449a929778d88500d, type: 2}
-  - {fileID: 2100000, guid: 61b6b1b3f06e1c642a23098d78c68bb7, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 5253188141297936423, guid: e52614395b8a1fa4e9c1a754547ee576, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights:
-  - 0
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: -0.14862168, y: 0.037020564, z: 5.5247498}
-    m_Extent: {x: 2.1839004, y: 2.2059388, z: 5.530411}
-  m_DirtyAABB: 0
+  resetTime: 6
+  gameStatus: 0
 --- !u!1001 &1637471501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4020,6 +3869,5 @@ SceneRoots:
   - {fileID: 1673248694}
   - {fileID: 1235504112}
   - {fileID: 1276512825}
-  - {fileID: 1507387038}
   - {fileID: 1263502720}
   - {fileID: 195413138}
