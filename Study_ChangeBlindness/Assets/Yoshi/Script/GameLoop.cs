@@ -33,7 +33,7 @@ public class GameLoop : MonoBehaviour
         if (gameStatus == 0)
         {
             //待機　または　チュートリアル
-            Debug.Log($"GameLoop : gameStatus waiting = 0 = {gameStatus}");
+            Debug.Log($"GameLoop : gameStatus waiting = 0");
             if (buttonStatus || true)
             {
                 gameStatus = 1;
@@ -43,11 +43,11 @@ public class GameLoop : MonoBehaviour
         }
         else if (gameStatus == 1)
         {
-            Debug.Log($"GameLoop : gameStatus モーフィング = 1 = {gameStatus},{gameTime}");
+            Debug.Log($"GameLoop : モーフィング");
             //モーフィング
             if (changeTime < gameTime && !finGame)
             {
-                Debug.Log($"GameLoop : send changeTime");
+                Debug.Log($"GameLoop : モーフィング中");
                 changeController.morphingChange = true;
                 changeController.changeTiming = true;
                 finGame = true;
@@ -56,46 +56,49 @@ public class GameLoop : MonoBehaviour
             if (buttonStatus || resetTime < gameTime)
             {
                 gameStatus = 2;
-                Debug.Log($"GameLoop : gameStatus モーフィング終了 = {gameStatus},{gameTime},{finGame} || {buttonStatus} || {resetTime < gameTime}");
                 gameTime = 0f;
+                Debug.Log($"GameLoop : モーフィング終了");
                 Reset();
             }
         }
         else if (gameStatus == 2)
         {
-            Debug.Log($"GameLoop : gameStatus 切り替わり = 2 = {gameStatus},{gameTime}");
+            Debug.Log($"GameLoop : 切り替わり");
             if (changeTime < gameTime && !finGame)
             {
                 //切り替わり
                 changeController.switchChange = true;
                 changeController.changeTiming = true;
                 finGame = true;
+                Debug.Log($"GameLoop : 切り替われ");
             }
 
             if (buttonStatus || resetTime < gameTime)
             {
                 gameStatus = 3;
-                Debug.Log($"GameLoop : gameStatus 切り替わり終了 = {gameStatus},{gameTime}");
                 gameTime = 0f;
+                Debug.Log($"GameLoop : 切り替わり終了");
                 Reset();
             }
         }
         else if (gameStatus == 3)
         {
-            Debug.Log($"GameLoop : gameStatus 色 = 3 = {gameStatus}");
+            Debug.Log($"GameLoop : 色");
             //色
             if (changeTime < gameTime && !finGame)
             {
                 changeController.colorChange = true;
                 changeController.changeTiming = true;
+                Debug.Log($"GameLoop : 色変化中");
                 finGame = true;
             }
 
             if (buttonStatus || resetTime < gameTime)
             {
-                gameStatus = 0;
+                gameStatus = 1;
                 gameTime = 0f;
                 Reset();
+                Debug.Log($"GameLoop : 色終了");
             }
         }
         else if (gameStatus == 4)
@@ -127,6 +130,7 @@ public class GameLoop : MonoBehaviour
 
     private void Reset()
     {
+        finGame = false;
         changeController.Reset();
         changeController.changeObjects.Clear();
         GameObject obj = Instantiate(StartObjects[gameStatus - 1], StartObjects[gameStatus - 1].transform.position, StartObjects[gameStatus - 1].transform.rotation);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,11 +30,6 @@ public class Changer : MonoBehaviour
         saw = true;
     }
 
-    void Update()
-    {
-
-    }
-
     //look
     void OnTriggerEnter(Collider other)
     {
@@ -46,7 +42,7 @@ public class Changer : MonoBehaviour
 
     public void MorphingChange()
     {
-        Debug.Log($"Changer : MorphingChange blendchange = {blendchange}");
+        //Debug.Log($"Changer : MorphingChange blendchange = {blendchange}");
         //モーフィング変化
         //blendchange += .changeSpeed;
         blendchange += 0.5f;
@@ -59,19 +55,22 @@ public class Changer : MonoBehaviour
         {
             blendchange = 0f;
             changeController.changeTiming = false;
+            changeController.morphingChange = false;
         }
     }
 
     public void SwitchChange( GameObject target )
     {
         //切り替わり変化
-        GameObject newObj = Instantiate(target, this.transform.position, Quaternion.identity);
+        GameObject newObj = Instantiate(target, this.transform.position, target.transform.rotation);
 
         newObj.tag = this.gameObject.tag;
         Changer newObj_script = newObj.GetComponent<Changer>();
         newObj_script.changeController = changeController;
+        newObj_script.gameLoop = gameLoop;
 
         changeController.changeTiming = false;
+        changeController.switchChange = false;
         this.gameObject.SetActive(false);
     }
 
@@ -80,6 +79,7 @@ public class Changer : MonoBehaviour
         //色変化
         this.gameObject.GetComponent<Renderer>().material = target;
         changeController.changeTiming = false;
+        changeController.colorChange = false; 
     }
 
     public void Reset()
@@ -89,8 +89,13 @@ public class Changer : MonoBehaviour
         inFocus = false;
         saw = false;
 
-        SkinnedMeshRenderer skinnedMeshRenderer = this.gameObject.GetComponent<SkinnedMeshRenderer>();
-        skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
+        try
+        {
+            SkinnedMeshRenderer skinnedMeshRenderer = this.gameObject.GetComponent<SkinnedMeshRenderer>();
+            skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
+        }
+        catch (MissingComponentException e)
+        { }
     }
     /*
     void OnTriggerStay(Collider other)

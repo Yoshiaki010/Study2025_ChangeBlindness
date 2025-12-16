@@ -2860,8 +2860,8 @@ MonoBehaviour:
   changeController: {fileID: 1105628689}
   buttonStatus: 0
   finGame: 0
-  resetTime: 6
-  changeTime: 3
+  resetTime: 10
+  changeTime: 5
   gameStatus: 0
 --- !u!1001 &1637471501
 PrefabInstance:

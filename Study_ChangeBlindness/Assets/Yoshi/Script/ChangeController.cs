@@ -48,6 +48,7 @@ public class ChangeController : MonoBehaviour
                             if (switchChange)
                             {
                                 obj_changer.SwitchChange(onePattern.switchStage[0]);
+                                Destroy(obj);
                             }
                             if (colorChange)
                             {
