@@ -23,8 +23,9 @@ public class RayController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log($"ray = {ray}, hit = {hit} , hit pos = {hit.point}");
-            Instantiate(target, hit.point, target.transform.rotation);
+            Vector3 pos = hit.point;
+            Debug.Log($"ray = {ray}, hit = {hit} , hit pos = {pos.x}, {pos.y}, {pos.z}");
+            //            Instantiate(target, hit.point, target.transform.rotation);
         }
     }
 }
