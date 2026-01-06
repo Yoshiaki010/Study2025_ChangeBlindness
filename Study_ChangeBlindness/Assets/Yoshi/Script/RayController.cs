@@ -7,10 +7,12 @@ using UnityEngine;
 public class RayController : MonoBehaviour
 {
     public GameObject target;
+    public Ray ray;
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class RayController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log($"ray = {ray}, hit = {hit} , hit pos = {hit.point}");
-            Instantiate(target, hit.point, target.transform.rotation);
+//            Instantiate(target, hit.point, target.transform.rotation);
         }
     }
 }
