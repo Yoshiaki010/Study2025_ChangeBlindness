@@ -6,7 +6,10 @@ public class GameLoop : MonoBehaviour
 {
     public List<Material> Images;
     public List<GameObject> StartObjects;
+
     public ChangeController changeController;
+    public RayController rayController;
+
     public bool buttonStatus;
     public bool finGame;
     public float resetTime;
@@ -136,6 +139,7 @@ public class GameLoop : MonoBehaviour
         GameObject obj = Instantiate(StartObjects[gameStatus - 1], StartObjects[gameStatus - 1].transform.position, StartObjects[gameStatus - 1].transform.rotation);
         Changer obj_changer = obj.GetComponent<Changer>();
         obj_changer.gameLoop = this;
+        obj_changer.rayController = rayController;
         obj_changer.changeController = changeController;
     }
 

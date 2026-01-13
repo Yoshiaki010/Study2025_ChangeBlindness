@@ -12,6 +12,7 @@ public class ChangeController : MonoBehaviour
 
     public GameLoop gameLoop;
     public float changeSpeed;
+
     public bool changeTiming;
     public bool morphingChange;
     public bool switchChange;
@@ -38,7 +39,7 @@ public class ChangeController : MonoBehaviour
 
                 if (!inFocus && saw)
                 {
-                    Debug.Log($"ChangeController : now change");
+                    Debug.Log($"ChangeController : send the signal to changer");
                     foreach (ChangeStageDict onePattern in changeDB)
                     {
                         if (obj.tag == onePattern.patternName)
@@ -59,12 +60,6 @@ public class ChangeController : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void gameStart()
-    {
-        foreach( GameObject obj in changeObjects)
-            obj.GetComponent<Changer>().gameStart = true;
     }
 
     public void Reset()

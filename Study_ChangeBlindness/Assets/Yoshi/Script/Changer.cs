@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +6,8 @@ public class Changer : MonoBehaviour
 {
     public ChangeController changeController;
     public GameLoop gameLoop;
+    public RayController rayController;
 
-    public bool gameStart;
     public bool inFocus;
     public bool saw;
 
@@ -18,25 +17,25 @@ public class Changer : MonoBehaviour
     {
         //é´èëÇ…ìoò^
         changeController.changeObjects.Add(this.gameObject);
-        Debug.Log("Changer : Add me to change objects List");
+        //Debug.Log("Changer : Add me to change objects List");
 
         Reset();
 
         blendchange = 0f;
-        gameStart = true;
 
         inFocus = false;
-        saw = true;
+        saw = false;
     }
 
-    //look
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (gameStart)
+        if (rayController.see_change_obj)
         {
             saw = true;
-            inFocus = false;
+            inFocus = true;
         }
+        else
+            inFocus = false;
     }
 
     public void MorphingChange()
@@ -84,7 +83,6 @@ public class Changer : MonoBehaviour
     public void Reset()
     {
         blendchange = 0f;
-        gameStart = false;
         inFocus = false;
         saw = false;
 
