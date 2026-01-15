@@ -1,43 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject player;
+    public GameObject resultCanvas;
+    public GameLoop gameLoop;
 
     void Update()
     {
-        /*
-        // 現在のキーボード情報
-        var current = Keyboard.current;
+        if (Input.GetKey(KeyCode.A))
+            player.transform.Rotate(0f, -0.5f, 0f);
 
-        // キーボード接続チェック
-        if (current == null)
-        {
-            // キーボードが接続されていないと
-            // Keyboard.currentがnullになる
-            return;
-        }
+        if (Input.GetKey(KeyCode.D))
+            player.transform.Rotate(0f, 0.5f, 0f);
 
-        // Aキーの入力状態取得
-        var aKey = current.aKey;
-        var dKey = current.dKey;
+        if (Input.GetKeyUp(KeyCode.R))
+            resultCanvas.SetActive(!resultCanvas.activeSelf);
 
-        // Aキーが押された瞬間かどうか
-        if (aKey.isPressed)
-        {
-//            Debug.Log("pressed a");
-            Player.transform.Rotate(0f, -0.5f, 0f);
-        }
-
-        // Dキーの入力状態取得
-        if (dKey.isPressed)
-        {
-//            Debug.Log("pressed d");
-            Player.transform.Rotate(0f, 0.5f, 0f);
-        }
-        */
+        if (Input.GetKeyUp(KeyCode.N) && gameLoop.startChange)
+            gameLoop.buttonN += 1;
     }
 }
