@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/simpleScene.unity
     guid: 1c23a887ab88972458a3784b9e0fd8c1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChangeBlindnessScene.unity
     guid: de2c3f5a20087ed47a17708c616d9159
+  - enabled: 1
+    path: Assets/Scenes/Study_ChangeBlindness_Scene.unity
+    guid: 247e999e55670a04097b3403ace7a54d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}

@@ -12,6 +12,7 @@ public class GameLoop : MonoBehaviour
     public RayController rayController;
 
     public GameObject rdyCanvas;
+    public GameObject pictureImage;
     public TextMeshProUGUI resultText;
     public bool startChange;
     public float resetTime;
@@ -223,6 +224,7 @@ public class GameLoop : MonoBehaviour
             {
                 if (buttonN == 2)
                 {
+                    rdyCanvas.SetActive(false);
                     resultText.text += result;
                     gameStatus = 0;
                     gameTime = 0f;
@@ -250,6 +252,7 @@ public class GameLoop : MonoBehaviour
 
     void Rady()
     {
+        pictureImage.GetComponent<Renderer>().material = Images[gameStatus - 1];
         GameObject startObj = StartObjects[gameStatus - 1];
         GameObject obj = Instantiate(startObj, startObj.transform.position, startObj.transform.rotation);
         Changer obj_changer = obj.GetComponent<Changer>();
@@ -257,5 +260,4 @@ public class GameLoop : MonoBehaviour
         obj_changer.rayController = rayController;
         obj_changer.changeController = changeController;
     }
-
 }
