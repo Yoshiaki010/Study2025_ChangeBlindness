@@ -45,7 +45,7 @@ public class GameLoop : MonoBehaviour
         {
             //待機　または　チュートリアル
             Debug.Log($"GameLoop : 待機中");
-            if (Input.GetKeyDown(KeyCode.N))
+            if (10f < gameTime || 1 < buttonN)
             {
                 n += 1;
                 gameStatus = 1;
@@ -78,15 +78,15 @@ public class GameLoop : MonoBehaviour
 
             if (rdyStatus)
             {
+                rdyCanvas.SetActive(false);
+                gameStatus = 2;
+                gameTime = 0f;
+                Reset();
+                Rady();
+                Debug.Log($"GameLoop : モーフィング終了");
+                Debug.Log($"GameLoop : 切り替わり");
                 if (buttonN == 2)
                 {
-                    rdyCanvas.SetActive(false);
-                    gameStatus = 2;
-                    gameTime = 0f;
-                    Reset();
-                    Rady();
-                    Debug.Log($"GameLoop : モーフィング終了");
-                    Debug.Log($"GameLoop : 切り替わり");
                 }
             }
         }
@@ -95,6 +95,7 @@ public class GameLoop : MonoBehaviour
             //切り替わり
             if (changeTime < gameTime)
             {
+                
                 Debug.Log($"GameLoop : 切り替わり　変化可能");
                 if (!startChange)
                 {
@@ -115,11 +116,11 @@ public class GameLoop : MonoBehaviour
             {
                 if (buttonN == 2)
                 {
+                    Reset();
+                    Rady();
                     rdyCanvas.SetActive(false);
                     gameStatus = 3;
                     gameTime = 0f;
-                    Reset();
-                    Rady();
                     Debug.Log($"GameLoop : 切り替わり終了");
                     Debug.Log($"GameLoop : 色　開始");
                 }
@@ -185,15 +186,15 @@ public class GameLoop : MonoBehaviour
 
             if (rdyStatus)
             {
+                rdyCanvas.SetActive(false);
+                gameStatus = 5;
+                gameTime = 0f;
+                Reset();
+                Rady();
+                Debug.Log($"GameLoop : モーフィングx色　終了");
+                Debug.Log($"GameLoop : 切り替わりx色　開始");
                 if (buttonN == 2)
                 {
-                    rdyCanvas.SetActive(false);
-                    gameStatus = 5;
-                    gameTime = 0f;
-                    Reset();
-                    Rady();
-                    Debug.Log($"GameLoop : モーフィングx色　終了");
-                    Debug.Log($"GameLoop : 切り替わりx色　開始");
                 }
             }
         }
@@ -222,15 +223,15 @@ public class GameLoop : MonoBehaviour
 
             if (rdyStatus)
             {
+                rdyCanvas.SetActive(false);
+                resultText.text += result;
+                gameStatus = 0;
+                gameTime = 0f;
+                Reset();
+                Debug.Log($"GameLoop : 切り替わりx色　終了");
+                Debug.Log($"GameLoop : 待機　開始");
                 if (buttonN == 2)
                 {
-                    rdyCanvas.SetActive(false);
-                    resultText.text += result;
-                    gameStatus = 0;
-                    gameTime = 0f;
-                    Reset();
-                    Debug.Log($"GameLoop : 切り替わりx色　終了");
-                    Debug.Log($"GameLoop : 待機　開始");
                 }
             }
         }

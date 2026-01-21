@@ -42,8 +42,7 @@ public class Changer : MonoBehaviour
     {
         //Debug.Log($"Changer : MorphingChange blendchange = {blendchange}");
         //モーフィング変化
-        //blendchange += .changeSpeed;
-        blendchange += 0.5f;
+        blendchange += changeController.changeSpeed;
 
         SkinnedMeshRenderer skinnedMeshRenderer = this.GetComponent<SkinnedMeshRenderer>();
         if (0f < blendchange && blendchange < 101f)
@@ -62,10 +61,12 @@ public class Changer : MonoBehaviour
         //切り替わり変化
         GameObject newObj = Instantiate(target, this.transform.position, target.transform.rotation);
 
-        newObj.tag = this.gameObject.tag;
-        Changer newObj_script = newObj.GetComponent<Changer>();
+        newObj.tag = "Switch";
+        Changer newObj_script = newObj.gameObject.GetComponent<Changer>();
         newObj_script.changeController = changeController;
         newObj_script.gameLoop = gameLoop;
+
+        Debug.Log("Yesw");
 
         changeController.changeTiming = false;
         changeController.switchChange = false;

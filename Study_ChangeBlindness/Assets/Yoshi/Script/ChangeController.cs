@@ -1,7 +1,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using static ChangeController;
 
@@ -36,6 +35,7 @@ public class ChangeController : MonoBehaviour
 
                 bool inFocus = obj_changer.inFocus;
                 bool saw = obj_changer.saw;
+                saw = true;
 
                 if (!inFocus && saw)
                 {
@@ -48,7 +48,9 @@ public class ChangeController : MonoBehaviour
                                 obj_changer.MorphingChange();
                             if (switchChange)
                             {
+                                Debug.Log("No");
                                 obj_changer.SwitchChange(onePattern.switchStage[0]);
+                                Debug.Log("Yes");
                                 Destroy(obj);
                             }
                             if (colorChange)
@@ -64,8 +66,11 @@ public class ChangeController : MonoBehaviour
 
     public void Reset()
     {
-        foreach( GameObject obj in changeObjects )
-            Destroy(obj);
+        if (changeObjects != null)
+        {
+            foreach (GameObject obj in changeObjects)
+                Destroy(obj);
+        }
     }
 
     [System.Serializable]

@@ -39,4 +39,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.N) && gameLoop.startChange)
             gameLoop.buttonN += 1;
     }
+
+    public void pushA()
+    {
+        gameLoop.buttonN += 1;
+    }
+
+    public void pushB()
+    {
+        resultCanvas.SetActive(!resultCanvas.activeSelf);
+    }
 }
